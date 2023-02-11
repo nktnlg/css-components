@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  min-height: 100vh;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #114;
+}
+
+.link {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  background: #0005;
+  margin: 3rem;
+  padding: 1rem 4rem;
+  transition: 1s;
+}
+.link:hover {
+  background-color: var(--clr);
+  box-shadow: 0 0 0.5rem var(--clr), 
+  0 0 2rem var(--clr),
+  0 0 4rem var(--clr),
+  0 0 6rem var(--clr);
+}
+@keyframes ribbon {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.link:before {
+    content: "";
+    position: absolute;
+    width: 2.5rem;
+    height: 400%;
+    background: var(--clr);
+
+    transition: 1s;
+    animation: ribbon 2s linear infinite;
+    animation-delay: calc(0.33s * var(--num));
+}
+.link:hover::before {
+    width: 120%;
+}
+.link::after {
+    content: "";
+    position: absolute;
+    inset: 0.25rem;
+    background-color: #114;
+    transition: 0.5s;
+}
+.link:hover::after {
+    background: var(--clr);
+}
+
+.link .btn-desc {
+    position: relative;
+    z-index: 1;
+    font-size: 2rem;
+    color: white;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem;
+    transition: 0.5s;
+}
+.link:hover .btn-desc {
+    opacity: 1;
+    color: #114;
+}
