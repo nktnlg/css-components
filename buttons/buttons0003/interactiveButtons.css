@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 0;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+*:focus {
+  outline: 0;
+}
+
+.buttons {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.cta {
+  padding: 0 32px;
+  height: 48px;
+  font-size: 16px;
+  text-transform: uppercase;
+  background-color: #a25dcf;
+  color: white;
+  cursor: pointer;
+}
+
+/* Might be used to show moderate urgency, on hover better use a transition for easier leave effect */
+.cta01 {
+  animation: darker 1.6s ease infinite;
+}
+@keyframes darker {
+  0% {
+    background-color: #a25dcf;
+  }
+  50% {
+    background-color: #481967;
+  }
+  10% {
+    background-color: #a25dcf;
+  }
+}
+/* Neutral interaction, waiting to be clicked */
+.cta02:hover {
+  animation: float 0.4s ease infinite alternate;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Looks aggresive, asking to be pushed immediately*/
+.cta03:hover {
+  animation: pulse 0.5s ease-in-out infinite alternate;
+}
+@keyframes pulse {
+  0% {
+    background-color: #a25dcf;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #481967;
+  }
+}
+
+/* Good hover effect in a non-serious context*/
+.cta04:hover {
+  animation: shake 0.5s ease-in-out infinite alternate;
+}
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(8deg);
+  }
+  66% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Could look good if attached to onClick event, doesn't look good repeated, might be good on enter/leave if switch animation for transition */
+.cta05 {
+  position: relative;
+  z-index: 1;
+}
+.cta05:before {
+  top: 0;
+}
+.cta05:after {
+  bottom: 0;
+}
+.cta05:hover::before,
+.cta05:hover::after {
+  content: "";
+  width: 100%;
+  height: 4px;
+  background-color: #481967;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  animation: blink 0.7s cubic-bezier(0.72, 0.09, 0.73, 0.65) forwards alternate;
+}
+@keyframes blink {
+  0% {
+    height: 0%;
+  }
+  50% {
+    height: 60%;
+  }
+  100% {
+    height: 0%;
+  }
+}
+
+/* Could be used as a disabled style while awaitig for async response */
+.cta06 {
+  position: relative;
+  transition: all 0.4s ease;
+}
+.cta06:hover::before {
+  content: "";
+  height: 4px;
+  background-color: #481967;
+  position: absolute;
+  bottom: 0;
+  animation: line 1.4s cubic-bezier(0.72, 0.09, 0.73, 0.65) infinite;
+}
+@keyframes line {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  25% {
+    width: 100%;
+    left: 0;
+  }
+  50% {
+    width: 0%;
+    left: 100%;
+  }
+
+  75% {
+    width: 100%;
+    left: 0;
+  }
+
+  100% {
+    width: 0;
+    left: 0;
+  }
+}
