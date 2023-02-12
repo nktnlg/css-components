@@ -1,0 +1,79 @@
+body {
+    display: grid;
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+    background: #000;
+}
+body::before {
+    content: "";
+    padding: 7.25rem;
+    background: radial-gradient(lightcoral 3.25rem, lightblue 4.25rem);
+}
+body::after {
+    content: "loading";
+    position: absolute;
+    top: calc(50% + 8.5rem);
+    left: 50%;
+    color: #fff5;
+    font: 200 1.5rem/1.25 sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transform: translate(-50%);
+    animation: blink 1s ease-in-out infinite alternate
+}
+@keyframes blink {
+    to {
+        opacity: 0%;
+    }
+}
+
+.loader, ::before, ::after {
+    place-self: center;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.loader {
+    display: grid;
+    padding: 2rem;
+    background: inherit;
+    filter: contrast(9);
+    mix-blend-mode: multiply;
+}
+.loader::before, .loader::after {
+    --stops: #fff calc(1rem - 1px), transparent 1rem;
+    content: "";
+    padding: 6.25rem;
+    background: 
+    radial-gradient(
+        circle at 1rem, var(--stops)
+    ),
+    radial-gradient(
+        circle at 50% 1rem, var(--stops)
+    ),
+    radial-gradient(
+        circle at calc(100% - 1rem), var(--stops)
+    ),
+    radial-gradient(
+        circle at 50% calc(100% - 1rem), var(--stops)
+    );
+    filter: blur(9px);
+    animation: a 0.875s ease-in-out infinite;
+}
+.loader::before {
+    animation-name: b;
+}
+@keyframes a {
+    33.33%, 66.66% {
+        padding: 1rem;
+    }
+}
+@keyframes b {
+    33.33% {
+        transform: rotate(0deg);
+    }
+    66.66%, 100% {
+        transform: rotate(90deg);
+    }
+}
